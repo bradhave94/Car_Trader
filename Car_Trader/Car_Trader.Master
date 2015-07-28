@@ -1,0 +1,140 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Car_Trader.Master.cs" Inherits="Car_Trader.Car_Trader" %>
+<!-- 
+    Authors: Jacob Amaral & Bradley Haveman
+    File Name: Car_Trader.Master
+    File Description: All pagers using this master page inherit from this page
+    Project name: Car Trader
+    Project Description: Car Trader is an online car selling/buying site where you can find the perfect car for you, or sell your old car.
+    Date Updated: July 24, 2015    
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" />
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <link href="CSS/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <a href="default.aspx">
+            <img src="/images/logo.png" />
+        </a>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/default.aspx">Cars Trader</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/default.aspx">Home</a></li>
+                        <li><a href="/vehicle.aspx">Vehicles</a></li>
+                        <asp:PlaceHolder ID="plhPostAd" runat="server">
+                            <li><a href="/admin/postAd.aspx">Post Ad</a></li>
+                            <li><a href="/admin/addMake.aspx">Add Make</a></li>
+                            <li><a href="/admin/addModel.aspx">Add Model</a></li>
+                        </asp:PlaceHolder>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Info <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/about.aspx">About Us</a></li>
+                                <li><a href="/contact.aspx">Contact</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <asp:PlaceHolder ID="plhPublic" runat="server">
+                            <li><a href="/register.aspx">Sign Up</a></li>
+                            <li><a href="/login.aspx">Login</a></li>
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder ID="plhPrivate" runat="server">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <asp:Label ID="lblUser" runat="server" Text="Hi" /><span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/admin/account.aspx">Account</a></li>
+                                    <li><a href="/logout.aspx">Logout</a></li>
+                                </ul>
+                            </li>
+                        </asp:PlaceHolder>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <form id="form1" runat="server">
+        <div class="container">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            jQuery("a").filter(function () {
+                return this.innerHTML.indexOf("Delete") == 0;
+            }).click(function () {
+                return confirm("Are you sure you want to delete this record?");
+            });
+        });
+    </script>
+
+    <footer class="well bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Navigation</h4>
+                    <ul class="list-unstyled">
+                        <a href="#">
+                            <li>Home</li>
+                        </a>
+                        <a href="#">
+                            <li>Post Ad</li>
+                        </a>
+                        <a href="#">
+                            <li>About</li>
+                        </a>
+                        <a href="#">
+                            <li>Contact</li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Sign Up/Login</h4>
+                    <ul class="list-unstyled">
+                        <a href="#">
+                            <li>Sign Up</li>
+                        </a>
+                        <a href="#">
+                            <li>Login</li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <a href="/default.aspx">
+                        <img src="/images/logoSmall.png" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

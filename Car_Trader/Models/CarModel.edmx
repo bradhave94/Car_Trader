@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="COMP2007Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CarClass">
+          <Key>
+            <PropertyRef Name="classID" />
+          </Key>
+          <Property Name="classID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="modelID" Type="int" Nullable="false" />
+          <Property Name="carID" Type="int" Nullable="false" />
+          <Property Name="class" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarEngine">
+          <Key>
+            <PropertyRef Name="engineID" />
+          </Key>
+          <Property Name="engineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cylinders" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fuelType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarMake">
+          <Key>
+            <PropertyRef Name="makeID" />
+          </Key>
+          <Property Name="makeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="make" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarModel">
+          <Key>
+            <PropertyRef Name="modelID" />
+          </Key>
+          <Property Name="modelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="makeID" Type="int" Nullable="false" />
+          <Property Name="model" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="carID" />
+          </Key>
+          <Property Name="carID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="engineID" Type="int" Nullable="false" />
+          <Property Name="modelYear" Type="int" Nullable="false" />
+          <Property Name="transmission" Type="varchar" MaxLength="50" />
+          <Property Name="new" Type="bit" />
+          <Property Name="color" Type="varchar" MaxLength="50" />
+          <Property Name="cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="kilometer" Type="int" Nullable="false" />
+          <Property Name="listedDate" Type="date" Nullable="false" />
+          <Property Name="carImage" Type="image" />
+        </EntityType>
+        <EntityType Name="CarUsers">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userPassword" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phoneNum" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="state" Type="varchar" MaxLength="2" />
+          <Property Name="country" Type="varchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cars_Engine">
+          <End Role="CarEngine" Type="Self.CarEngine" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarEngine">
+              <PropertyRef Name="engineID" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="engineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_User">
+          <End Role="CarUsers" Type="Self.CarUsers" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Class_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="1" />
+          <End Role="CarClass" Type="Self.CarClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="carID" />
+            </Principal>
+            <Dependent Role="CarClass">
+              <PropertyRef Name="carID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Class_Model">
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="1" />
+          <End Role="CarClass" Type="Self.CarClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarModel">
+              <PropertyRef Name="modelID" />
+            </Principal>
+            <Dependent Role="CarClass">
+              <PropertyRef Name="modelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_Make">
+          <End Role="CarMake" Type="Self.CarMake" Multiplicity="1" />
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarMake">
+              <PropertyRef Name="makeID" />
+            </Principal>
+            <Dependent Role="CarModel">
+              <PropertyRef Name="makeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="COMP2007ModelStoreContainer">
+          <EntitySet Name="CarClass" EntityType="Self.CarClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarEngine" EntityType="Self.CarEngine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarMake" EntityType="Self.CarMake" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarModel" EntityType="Self.CarModel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarUsers" EntityType="Self.CarUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cars_Engine" Association="Self.FK_Cars_Engine">
+            <End Role="CarEngine" EntitySet="CarEngine" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_User" Association="Self.FK_Cars_User">
+            <End Role="CarUsers" EntitySet="CarUsers" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Class_Cars" Association="Self.FK_Class_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="CarClass" EntitySet="CarClass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Class_Model" Association="Self.FK_Class_Model">
+            <End Role="CarModel" EntitySet="CarModel" />
+            <End Role="CarClass" EntitySet="CarClass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_Make" Association="Self.FK_Model_Make">
+            <End Role="CarMake" EntitySet="CarMake" />
+            <End Role="CarModel" EntitySet="CarModel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="COMP2007Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CarClass">
+          <Key>
+            <PropertyRef Name="classID" />
+          </Key>
+          <Property Name="classID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="modelID" Type="Int32" Nullable="false" />
+          <Property Name="carID" Type="Int32" Nullable="false" />
+          <Property Name="class" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Car" Relationship="Self.FK_Class_Cars" FromRole="CarClass" ToRole="Cars" />
+          <NavigationProperty Name="CarModel" Relationship="Self.FK_Class_Model" FromRole="CarClass" ToRole="CarModel" />
+        </EntityType>
+        <EntityType Name="CarEngine">
+          <Key>
+            <PropertyRef Name="engineID" />
+          </Key>
+          <Property Name="engineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cylinders" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fuelType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_Engine" FromRole="CarEngine" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="CarMake">
+          <Key>
+            <PropertyRef Name="makeID" />
+          </Key>
+          <Property Name="makeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="make" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CarModels" Relationship="Self.FK_Model_Make" FromRole="CarMake" ToRole="CarModel" />
+        </EntityType>
+        <EntityType Name="CarModel">
+          <Key>
+            <PropertyRef Name="modelID" />
+          </Key>
+          <Property Name="modelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="makeID" Type="Int32" Nullable="false" />
+          <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CarClasses" Relationship="Self.FK_Class_Model" FromRole="CarModel" ToRole="CarClass" />
+          <NavigationProperty Name="CarMake" Relationship="Self.FK_Model_Make" FromRole="CarModel" ToRole="CarMake" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="carID" />
+          </Key>
+          <Property Name="carID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="engineID" Type="Int32" Nullable="false" />
+          <Property Name="modelYear" Type="Int32" Nullable="false" />
+          <Property Name="transmission" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="new" Type="Boolean" />
+          <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kilometer" Type="Int32" Nullable="false" />
+          <Property Name="listedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="carImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="CarClasses" Relationship="Self.FK_Class_Cars" FromRole="Cars" ToRole="CarClass" />
+          <NavigationProperty Name="CarEngine" Relationship="Self.FK_Cars_Engine" FromRole="Cars" ToRole="CarEngine" />
+          <NavigationProperty Name="CarUser" Relationship="Self.FK_Cars_User" FromRole="Cars" ToRole="CarUsers" />
+        </EntityType>
+        <EntityType Name="CarUser">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userPassword" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phoneNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_User" FromRole="CarUsers" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="city1" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Class_Cars">
+          <End Role="Cars" Type="Self.Car" Multiplicity="1" />
+          <End Role="CarClass" Type="Self.CarClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="carID" />
+            </Principal>
+            <Dependent Role="CarClass">
+              <PropertyRef Name="carID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Class_Model">
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="1" />
+          <End Role="CarClass" Type="Self.CarClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarModel">
+              <PropertyRef Name="modelID" />
+            </Principal>
+            <Dependent Role="CarClass">
+              <PropertyRef Name="modelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Engine">
+          <End Role="CarEngine" Type="Self.CarEngine" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarEngine">
+              <PropertyRef Name="engineID" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="engineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_Make">
+          <End Role="CarMake" Type="Self.CarMake" Multiplicity="1" />
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarMake">
+              <PropertyRef Name="makeID" />
+            </Principal>
+            <Dependent Role="CarModel">
+              <PropertyRef Name="makeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_User">
+          <End Role="CarUsers" Type="Self.CarUser" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="COMP2007Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CarClasses" EntityType="Self.CarClass" />
+          <EntitySet Name="CarEngines" EntityType="Self.CarEngine" />
+          <EntitySet Name="CarMakes" EntityType="Self.CarMake" />
+          <EntitySet Name="CarModels" EntityType="Self.CarModel" />
+          <EntitySet Name="Cars" EntityType="Self.Car" />
+          <EntitySet Name="CarUsers" EntityType="Self.CarUser" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <AssociationSet Name="FK_Class_Cars" Association="Self.FK_Class_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="CarClass" EntitySet="CarClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Class_Model" Association="Self.FK_Class_Model">
+            <End Role="CarModel" EntitySet="CarModels" />
+            <End Role="CarClass" EntitySet="CarClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Engine" Association="Self.FK_Cars_Engine">
+            <End Role="CarEngine" EntitySet="CarEngines" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_Make" Association="Self.FK_Model_Make">
+            <End Role="CarMake" EntitySet="CarMakes" />
+            <End Role="CarModel" EntitySet="CarModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_User" Association="Self.FK_Cars_User">
+            <End Role="CarUsers" EntitySet="CarUsers" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="COMP2007ModelStoreContainer" CdmEntityContainer="COMP2007Entities">
+          <EntitySetMapping Name="CarClasses">
+            <EntityTypeMapping TypeName="COMP2007Model.CarClass">
+              <MappingFragment StoreEntitySet="CarClass">
+                <ScalarProperty Name="classID" ColumnName="classID" />
+                <ScalarProperty Name="modelID" ColumnName="modelID" />
+                <ScalarProperty Name="carID" ColumnName="carID" />
+                <ScalarProperty Name="class" ColumnName="class" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarEngines">
+            <EntityTypeMapping TypeName="COMP2007Model.CarEngine">
+              <MappingFragment StoreEntitySet="CarEngine">
+                <ScalarProperty Name="engineID" ColumnName="engineID" />
+                <ScalarProperty Name="cylinders" ColumnName="cylinders" />
+                <ScalarProperty Name="fuelType" ColumnName="fuelType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarMakes">
+            <EntityTypeMapping TypeName="COMP2007Model.CarMake">
+              <MappingFragment StoreEntitySet="CarMake">
+                <ScalarProperty Name="makeID" ColumnName="makeID" />
+                <ScalarProperty Name="make" ColumnName="make" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarModels">
+            <EntityTypeMapping TypeName="COMP2007Model.CarModel">
+              <MappingFragment StoreEntitySet="CarModel">
+                <ScalarProperty Name="modelID" ColumnName="modelID" />
+                <ScalarProperty Name="makeID" ColumnName="makeID" />
+                <ScalarProperty Name="model" ColumnName="model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="COMP2007Model.Car">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="carID" ColumnName="carID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="engineID" ColumnName="engineID" />
+                <ScalarProperty Name="modelYear" ColumnName="modelYear" />
+                <ScalarProperty Name="transmission" ColumnName="transmission" />
+                <ScalarProperty Name="new" ColumnName="new" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="kilometer" ColumnName="kilometer" />
+                <ScalarProperty Name="listedDate" ColumnName="listedDate" />
+                <ScalarProperty Name="carImage" ColumnName="carImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarUsers">
+            <EntityTypeMapping TypeName="COMP2007Model.CarUser">
+              <MappingFragment StoreEntitySet="CarUsers">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="COMP2007Model.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="city1" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="country" ColumnName="country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
