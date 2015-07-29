@@ -52,7 +52,6 @@
           <Property Name="location" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="kilometer" Type="int" Nullable="false" />
           <Property Name="listedDate" Type="date" Nullable="false" />
-          <Property Name="carImage" Type="image" />
         </EntityType>
         <EntityType Name="CarUsers">
           <Key>
@@ -222,7 +221,6 @@
           <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="kilometer" Type="Int32" Nullable="false" />
           <Property Name="listedDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="carImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="CarClasses" Relationship="Self.FK_Class_Cars" FromRole="Cars" ToRole="CarClass" />
           <NavigationProperty Name="CarEngine" Relationship="Self.FK_Cars_Engine" FromRole="Cars" ToRole="CarEngine" />
           <NavigationProperty Name="CarUser" Relationship="Self.FK_Cars_User" FromRole="Cars" ToRole="CarUsers" />
@@ -394,7 +392,6 @@
                 <ScalarProperty Name="location" ColumnName="location" />
                 <ScalarProperty Name="kilometer" ColumnName="kilometer" />
                 <ScalarProperty Name="listedDate" ColumnName="listedDate" />
-                <ScalarProperty Name="carImage" ColumnName="carImage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

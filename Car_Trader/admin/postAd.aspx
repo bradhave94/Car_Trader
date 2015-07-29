@@ -155,7 +155,7 @@
                         </div>
                         <%--Wagon--%>
                         <div class="col-sm-3">
-                            <img src="../images/classes/truck.png" /><br />
+                            <img src="../images/classes/wagon.png" /><br />
                             <asp:RadioButton GroupName="classGroup" runat="server" OnCheckedChanged="classRbt_CheckedChanged" ID="wagonRbt" Text="Wagon" />
                         </div>
                     </div>

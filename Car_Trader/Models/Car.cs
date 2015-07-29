@@ -30,7 +30,6 @@ namespace Car_Trader.Models
         public string location { get; set; }
         public int kilometer { get; set; }
         public System.DateTime listedDate { get; set; }
-        public byte[] carImage { get; set; }
     
         public virtual ICollection<CarClass> CarClasses { get; set; }
         public virtual CarEngine CarEngine { get; set; }
