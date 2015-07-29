@@ -23,13 +23,13 @@ namespace Car_Trader.admin
         private int makeID;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            getMakes();
+            if (!IsPostBack)
+                getMakes();
         }
 
         protected void ddlMake_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void getMakes()
@@ -39,25 +39,25 @@ namespace Car_Trader.admin
                 //Connect to EF
                 using (COMP2007Entities db = new COMP2007Entities())
                 {
-                    
+
                     //Get the makes from the db
                     var makes = (from d in db.CarMakes
                                  orderby d.makeID
                                  select d);
 
-                    
+
                     //Bind them to the grid
                     ddlMake.DataSource = makes.ToList();
                     ddlMake.DataBind();
                     ddlMake.Items.Insert(0, new ListItem("Please select a make", "0"));
 
-                   
+
                 } //End using
             } //End TRY
             //Catch any error and redirect to the error page
             catch (SystemException ex)
             {
-                
+
             } //End CATCH
         }
 
@@ -68,26 +68,49 @@ namespace Car_Trader.admin
                 //Connect to EF
                 using (COMP2007Entities db = new COMP2007Entities())
                 {
-                    CarModel model = new CarModel();
 
-                    //Get the user input
-                    model.model = txtModel.Text;
-                    model.makeID = Convert.ToInt32(ddlMake.SelectedValue);
+                    //Check if the make exists
+                    int count = (from m in db.CarModels
+                                 where m.model == txtModel.Text
+                                 select m).Count();
 
-                    //Add to th DB
-                    db.CarModels.Add(model);
+                    if (count != 0)
+                    {
+                        //Reset the fields
+                        lblStatus.Visible = true;
+                        txtModel.Text = "";
 
-                    //Save the DB
-                    db.SaveChanges();
+                        //Show message
+                        lblStatus.Text = "Model already exists";
+
+                    }
+
+                    else
+                    {
+
+                        CarModel model = new CarModel();
+
+                        //Get the user input
+                        model.model = txtModel.Text;
+                        model.makeID = Convert.ToInt32(ddlMake.SelectedValue);
+
+                        //Add to th DB
+                        db.CarModels.Add(model);
+
+                        //Save the DB
+                        db.SaveChanges();
+
+                        //Reset the fields
+                        lblStatus.Visible = true;
+                        ddlMake.SelectedIndex = 0;
+                        txtModel.Text = "";
+
+                        //Show message
+                        lblStatus.Text = "Model successfully added";
+                    }
                 }
 
-                //Reset the fields
-                lblStatus.Visible = true;
-                ddlMake.SelectedIndex = 0;
-                txtModel.Text = "";
-
-                //Show message
-                lblStatus.Text = "Model successfully added";
+               
             } //End TRY
             //Catch any error and redirect to the error page
             catch (SystemException ex)

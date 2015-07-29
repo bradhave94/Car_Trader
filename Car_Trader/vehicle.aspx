@@ -82,7 +82,7 @@
     <asp:Panel ID="pnlCars" runat="server">
         <div class="well">
             <asp:GridView runat="server" ID="grdCars" CssClass="table table-striped table-hover" AutoGenerateColumns="false" DataKeyNames="make"
-                AllowPaging="true" PageSize="5" OnPageIndexChanging="grdCars_PageIndexChanging"
+                AllowPaging="true" PageSize="10" OnPageIndexChanging="grdCars_PageIndexChanging"
                 AllowSorting="true" OnSorting="grdCars_Sorting" OnRowDataBound="grdCars_RowDataBound">
                 <Columns>
                     <asp:BoundField DataField="make" HeaderText="Car Make" SortExpression="make" />

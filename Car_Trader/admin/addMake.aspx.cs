@@ -32,24 +32,46 @@ namespace Car_Trader.admin
                 //Connect to EF
                 using (COMP2007Entities db = new COMP2007Entities())
                 {
-                    CarMake make = new CarMake();
 
-                    //The the user input
-                    make.make = txtMake.Text;
+                    //Check if the make exists
+                    int count = (from m in db.CarMakes
+                                     where m.make == txtMake.Text
+                                     select m).Count();
 
-                    //Add to the database
-                    db.CarMakes.Add(make);
+                    if(count != 0)
+                    {
+                        //Reset the fields
+                        lblStatus.Visible = true;
+                        txtMake.Text = "";
 
-                    //Save the database
-                    db.SaveChanges();
+                        //Show message
+                        lblStatus.Text = "Make already exists";
+                        
+                    }
+                    else
+                    {
+                        CarMake make = new CarMake();
+
+                        //The the user input
+                        make.make = txtMake.Text;
+
+                        //Add to the database
+                        db.CarMakes.Add(make);
+
+                        //Save the database
+                        db.SaveChanges();
+
+                        //Reset the fields
+                        lblStatus.Visible = true;
+                        txtMake.Text = "";
+
+                        //Show message
+                        lblStatus.Text = "Make successfully added";
+                    }
+                    
                 }
 
-                //Reset the fields
-                lblStatus.Visible = true;
-                txtMake.Text = "";
-
-                //Show message
-                lblStatus.Text = "Make successfully added";
+                
             } //End TRY
             //Catch any error and redirect to the error page
             catch (SystemException ex)

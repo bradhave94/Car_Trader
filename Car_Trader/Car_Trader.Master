@@ -106,9 +106,6 @@
                         <a href="/default.aspx">
                             <li>Home</li>
                         </a>
-                        <a href="/postAd.aspx">
-                            <li>Post Ad</li>
-                        </a>
                         <a href="/about.aspx">
                             <li>About</li>
                         </a>
