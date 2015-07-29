@@ -1,16 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Car_Trader.Master" AutoEventWireup="true" CodeBehind="about.aspx.cs" Inherits="Car_Trader.about" %>
+﻿<%@ Page Title="About | Car Trader" Language="C#" MasterPageFile="~/Car_Trader.Master" AutoEventWireup="true" CodeBehind="about.aspx.cs" Inherits="Car_Trader.about" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Lorem Ipsum </h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis magna blandit, vehicula orci non, venenatis est. Integer posuere convallis sapien in condimentum. Sed nec nulla eu tortor facilisis molestie. Mauris auctor urna sit amet nunc pharetra, vulputate lacinia sem consequat. Proin fringilla sit amet erat quis ultricies. Vivamus neque orci, sodales at imperdiet ac, consectetur in dolor. Vivamus porta ac mauris non mollis. In imperdiet nunc vitae maximus fermentum. Vivamus sagittis accumsan luctus.</p>
-
-    <p>Pellentesque viverra elit lobortis libero efficitur suscipit. Aliquam vel urna fermentum, vehicula urna sit amet, venenatis augue. Proin posuere justo non consequat accumsan. Sed sodales sem id eros posuere, in aliquam tellus sollicitudin. Nullam maximus vulputate velit nec tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum sit amet lorem in viverra. Nam et dui neque. Etiam mattis lacus quis leo dapibus tristique. Vestibulum posuere at mi eget scelerisque. Suspendisse potenti. Aliquam facilisis mi eu lacus tincidunt, nec molestie sem bibendum. Suspendisse pharetra metus augue, non venenatis dolor vulputate id. Ut porttitor posuere quam ultrices lacinia. Maecenas efficitur libero in turpis scelerisque finibus. Fusce ac finibus ex, id pharetra dolor.</p>
-
-    <p>Sed massa nisl, dapibus ut varius quis, feugiat quis enim. Nunc tempus lectus nec nibh volutpat, varius venenatis justo sollicitudin. Suspendisse tempus dolor quis mauris scelerisque, rutrum aliquam elit dapibus. Curabitur vitae purus dignissim, feugiat dui nec, vulputate sem. Nulla id consectetur est, nec consequat ex. Integer at augue viverra, semper felis sed, cursus magna. Etiam ipsum nunc, accumsan molestie bibendum a, bibendum vel lectus. Nullam porttitor ipsum vel diam lobortis, ut congue erat sodales. Vivamus a eros mattis, aliquam sem ut, vehicula metus. Mauris fermentum sed erat eget hendrerit.</p>
-
-    <p>Integer eget consequat sem. Nunc in leo nulla. Vestibulum quis urna id nunc imperdiet dignissim. Morbi quis erat sit amet ipsum malesuada tincidunt vitae posuere ante. Maecenas quis ornare dui. Etiam finibus turpis ut elit finibus varius. Phasellus feugiat nulla sed velit ornare vestibulum. Curabitur id dui lacus. Sed ante neque, mollis vitae ipsum vel, eleifend scelerisque tellus. Aliquam eu justo ipsum. Integer ut erat pellentesque urna volutpat bibendum.</p>
-
-    <p>Nam eget erat velit. Maecenas tempor sit amet arcu vitae vulputate. Aliquam pellentesque interdum elit quis luctus. Vivamus sed cursus nibh. Donec augue ligula, consectetur eget mattis vel, vulputate nec turpis. Fusce condimentum varius arcu, sed viverra dui feugiat sed. Proin vel felis feugiat, ultricies velit quis, convallis leo. Proin pellentesque nibh arcu, vitae lobortis nisi iaculis in. Morbi at magna aliquam, tincidunt lorem in, convallis neque. In et augue est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus lobortis et odio vel consectetur. Aliquam rhoncus laoreet mi ac mollis.</p>
+    <h1>Your premium destination for all cars</h1>
+    <p>Car trader provides a unique online market place to buy,sell or look at car sales in your area! Developed by experienced programmers Jacob Amaral and Bradley Haveman, we want to provide you with a fantastic car experience! </p>
 </asp:Content>

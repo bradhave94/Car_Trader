@@ -23,10 +23,10 @@
         <asp:Label runat="server" CssClass="col-sm-2" AssociatedControlID="txtMake" Text="Make: "></asp:Label>
         <asp:TextBox runat="server" ID="txtMake"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" Display="Dynamic" ControlToValidate="txtMake" runat="server" ErrorMessage="Make is Required" CssClass="label label-danger"></asp:RequiredFieldValidator>
-        <asp:RegularExpressionValidator CssClass="label label-danger" ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtMake" ValidationExpression="^[a-zA-Z]*$" ErrorMessage="Make Must be a string" Display="Dynamic"></asp:RegularExpressionValidator>
+        <asp:RegularExpressionValidator CssClass="label label-danger" ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtMake" ValidationExpression="^[a-z A-Z]*$" ErrorMessage="Make Must be a string" Display="Dynamic"></asp:RegularExpressionValidator>
     </div>
     <%--Button--%>
     <div class="form-group">
-        <asp:Button CssClass="btn btn-primary" runat="server" ID="btnAddMake" Text="Add" OnClick="btnAddMake_Click" />
+        <asp:Button CssClass="btn btn-primary" runat="server" ID="btnAddMake" Text="Add" OnClick="btnAddMake_Click" /> 
     </div>
 </asp:Content>

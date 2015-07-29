@@ -66,7 +66,7 @@
                     <div class="form-group">
                         <asp:Label CssClass="col-sm-3" AssociatedControlID="txtColour" runat="server" ID="lblColour" Text="Colour" />
                         <asp:TextBox runat="server" ID="txtColour"></asp:TextBox>
-                        <asp:RegularExpressionValidator CssClass="label label-danger" ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtColour" ValidationExpression="^[a-zA-Z]*$" ErrorMessage="Colour Must be a string!" Display="Dynamic"></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator CssClass="label label-danger" ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtColour" ValidationExpression="^[a-z A-Z]*$" ErrorMessage="Colour Must be a string!" Display="Dynamic"></asp:RegularExpressionValidator>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" CssClass="label label-danger" Display="Dynamic" runat="server" ControlToValidate="txtColour" ErrorMessage="Colour is required"></asp:RequiredFieldValidator>
                     </div>
                     <%--Engine Type--%>
@@ -106,7 +106,8 @@
                     <div class="form-group">
                         <asp:Label CssClass="col-sm-3" runat="server" ID="lblLocation" AssociatedControlID="txtLocation" Text="City: " />
                         <asp:TextBox ID="txtLocation" runat="server" CssClass="textboxAuto" Font-Size="12px" Placeholder="Search your city here..." TextMode="Search" />
-                        <asp:RegularExpressionValidator CssClass="label label-danger" ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtLocation" ValidationExpression="^[a-zA-Z]*$" ErrorMessage="Location Must be a string!" Display="Dynamic"></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator CssClass="label label-danger" ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtLocation" 
+                            ValidationExpression="^[a-z A-Z]*$" ErrorMessage="Location Must be a string!" Display="Dynamic"></asp:RegularExpressionValidator>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" CssClass="label label-danger" Display="Dynamic" runat="server" ControlToValidate="txtLocation" ErrorMessage="Location is required"></asp:RequiredFieldValidator>
                     </div>
                     <%--New/Used Field--%>

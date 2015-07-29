@@ -44,7 +44,7 @@
         <asp:Label CssClass="col-sm-2" runat="server" AssociatedControlID="txtModel" Text="Model: "></asp:Label>
         <asp:TextBox runat="server" ID="txtModel"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" Display="Dynamic" ControlToValidate="txtModel" runat="server" ErrorMessage="Model is Required" CssClass="label label-danger"></asp:RequiredFieldValidator>
-        <asp:RegularExpressionValidator CssClass="label label-danger" ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtModel" ValidationExpression="^[a-zA-Z]*$" ErrorMessage="Model Must be a string" Display="Dynamic"></asp:RegularExpressionValidator>
+        <asp:RegularExpressionValidator CssClass="label label-danger" ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtModel" ValidationExpression="^[a-z A-Z]*$" ErrorMessage="Model Must be a string" Display="Dynamic"></asp:RegularExpressionValidator>
     </div>
     <%--Button--%>
     <div class="form-group">
