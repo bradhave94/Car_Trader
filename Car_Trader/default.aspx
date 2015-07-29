@@ -15,7 +15,7 @@
     <div class="jumbotron text-center">
         <h1>Car Trader<br />Reinventing The Wheel</h1>
         <br />
-        <p><a class="btn btn-danger btn-lg" href="/register.aspx" role="button">Learn more</a></p>
+        <p><a class="btn btn-danger btn-lg" href="/about.aspx" role="button">Learn more</a></p>
     </div>
 
     <div class="text-center">
